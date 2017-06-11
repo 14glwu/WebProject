@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
+  <display-name>WebFinalProject</display-name>
+  <servlet>
+  		<servlet-name>UserServlet</servlet-name>
+  		<servlet-class>Servlet.UserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  		<servlet-name>UserServlet</servlet-name>
+  		<url-pattern>/UserServlet</url-pattern>
+  </servlet-mapping>
+    <servlet>
+  		<servlet-name>QuestionServlet</servlet-name>
+  		<servlet-class>Servlet.QuestionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  		<servlet-name>QuestionServlet</servlet-name>
+  		<url-pattern>/QuestionServlet</url-pattern>
+  </servlet-mapping>
+  
+ <session-config> 
+ 		<session-timeout>60</session-timeout> 
+ </session-config> 
+ <welcome-file-list>
+  		 <welcome-file>login.html</welcome-file>
+ </welcome-file-list>
+</web-app>

@@ -1,0 +1,130 @@
+@charset "utf-8";
+
+
+/*搜索区域*/
+#search{
+	width: 100%;
+	height: 528px;
+	min-width: 1263px;
+	background: url(../img/background1.jpg) no-repeat center;
+	position: relative;
+}
+/*搜索框居中部分*/
+#search .center{
+	width: 600px;
+	height: 60px;
+	background-color: #0099CC;
+	position: absolute;
+	top:50%;
+	left:50%;
+	margin: -30px 0 0 -300px;
+	opacity: 0.9;
+	border-radius: 5px;
+}
+/*搜索框*/
+#search .search{
+	width: 480px;
+	height: 53px;
+	background-color: #fff;
+	position: absolute;
+	top:50%;
+	left:50%;
+	margin: -27px 0 0 -296px;
+	color: #0099CC;
+	border: 1px solid #666;
+	font-size: 20px;
+	padding: 0 14px;
+	border:none;
+	outline: none;
+	border-radius: 5px;
+}
+::-webkit-input-placeholder { /* WebKit browsers */ 
+color: #0099CC; 
+} 
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */ 
+color: #0099CC; 
+} 
+::-moz-placeholder { /* Mozilla Firefox 19+ */ 
+color:#0099CC; 
+} 
+:-ms-input-placeholder { /* Internet Explorer 10+ */ 
+color: #0099CC; 
+} 
+/*搜索按钮*/
+#search .button{
+	width: 40px;
+	height: 34px;
+	position: absolute;
+	top:50%;
+	left:50%;
+	margin: -27px 0 0 215px;
+	color: #666;
+	border: 1px solid #666;
+	font-size: 20px;
+	padding:10px 20px;
+	border:none;
+	outline: none;
+	cursor: pointer;
+	border-radius: 5px;
+}
+/*主体部分*/
+#main{
+	width: 1200px;
+	margin:0 auto;
+	padding:30px 20px;
+	opacity:0.8;
+	text-align: center;
+}
+#main .center h2{
+	font-size: 45px;
+	letter-spacing: 2px;
+	color:#333;
+	margin: 10px 0;
+}
+#main .center p{
+	color:#333;
+	margin: 10px 0;
+}
+/*内容容器*/
+#container{
+	width:1200px;
+	margin:0 auto;
+}
+/*方块盒子*/
+#container .box{
+	width:250px;
+	height:250px;
+	margin:20px 25px;
+	padding:10px 30px;
+	border:2px solid #0099cc;
+	text-align: left;
+	box-sizing:border-box;
+	float:left;
+}
+#container .box:hover{
+	background-color: #0099cc;
+}
+#container .box:hover > h2{
+	color:#fff;
+}
+#container .box:hover  a{
+	color:#fff;
+}
+#container h2{
+	margin:8px auto;
+	font-size:24px;
+	color:#0099cc;
+	text-align: center;
+	font-weight: bold;
+}
+
+#container a{
+	font-size:18px;
+	line-height:28px;
+	color:#333;
+}
+#container a:hover{
+	color:#0099cc;
+	text-decoration: underline;
+}
+
