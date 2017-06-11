@@ -1,6 +1,6 @@
 <%@page import="Entity.User"%>
 <%@page import="Entity.Question"%>
-<%@page import="java.util.List"%>>
+<%@page import="java.util.List"%>
 <%@page import="org.apache.tomcat.util.descriptor.web.LoginConfig"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
@@ -13,16 +13,22 @@
 	<script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>
 </head>
 <body>
-	<% //判断用户是否已经登录
-   User user=null;
+	<% 
+	//判断用户是否已经登录
+    String sno="";
+	int lev=1;
 	if(session.getAttribute("user")!=null){
-          user=(User)session.getAttribute("user");
+          User user=(User)session.getAttribute("user");
+          sno=user.getSno();
+          lev=user.getLev();
     }else{
     	response.sendRedirect("login.html");   
     }
 	
-	List<Question> questions= (List<Question>)session.getAttribute("questions");
+	List<Question> questions= (List<Question>)session.getAttribute("questions"); 
+	
 	%>
+	
 <div id="home">
 	<header>
 		<div id="title">WEB应用技术期末考试</div>
@@ -31,14 +37,14 @@
 	</header>
 	<div id="main">
 		<div id="StuIfo">
-		考生：<%=user.getSno() %>
+		考生：<%=sno %>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		考生级别：<%=user.getLev() %>
+		考生级别：<%=lev %>
 		</div><!-- end:StuIfo 学生信息 -->
 
 		<div id="content">
 			<div class="question">
-				<h4>本学期教授WEB技术的是哪一个老师？（答错自动扣40分）<span class="star">*</span></h4>
+				<h4>本学期教授WEB技术的是哪一个老师？（答错自动扣40分）<span class="red" id="red">*</span><span class="green" id="green"></span></h4>
 				<div class="imgQustion">
 					<div class="imgBox">
 						<label for="haiyong">
@@ -68,20 +74,23 @@
 			</div>
 			<%
 			int count=0;
+			if(questions!=null){
 			for(Question q: questions){
+				count++;
 			%>
 			<div class="question">
-				<h4>第<%=count++%>题，<%=q.getCon()%><span class="star">*</span></h4>
+				<h4>第<%=count%>题，<%=q.getCon()%><span class="red" id="red">*</span><span class="green" id="green"></span></h4>
 				<div class="answerBox">
-					<label><div class="answerStyle"><input type="radio" name="question1" value="1" class="radioStyle2"><%= q.getA()%> </div></label>
-					<label><div class="answerStyle"><input type="radio" name="question1" value="2" class="radioStyle2"><%= q.getB()%> </div><br></label>
-					<label><div class="answerStyle"><input type="radio" name="question1" value="3" class="radioStyle2"><%= q.getC()%>  </div></label>
-					<label><div class="answerStyle"><input type="radio" name="question1" value="4" class="radioStyle2"><%= q.getD()%>  </div><br></label>
+					<label><span class="answerStyle"><input type="radio" name="<%=count%>" value="A" 	class="radioStyle2"><%= q.getA()%> </span></label>
+					<label><span class="answerStyle"><input type="radio" name="<%=count%>" value="B" class="radioStyle2"><%= q.getB()%> </span><br></label>
+					<label><span class="answerStyle"><input type="radio" name="<%=count%>" value="C" class="radioStyle2"><%= q.getC()%>  </span></label>
+					<label><span class="answerStyle"><input type="radio" name="<%=count%>" value="D" class="radioStyle2"><%= q.getD()%>  </span><br></label>
 				</div>
 			</div>
 			<%
 			if(count==10){
 				break;
+			}
 			}
 			}
 			%>
@@ -95,7 +104,7 @@
 
 <!-- 结果显示窗口 -->
 <div id="light" class="white_content">
-	<textarea name="showContent" id="showContent" value="显示内容" disabled></textarea> <br>
+	<textarea name="showContent" id="showContent" disabled></textarea> <br>
 	<a href="javascript:void(0)" onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">
 关闭</a>
 </div>
@@ -109,6 +118,7 @@
 		<input type="text" name="showtime" id="showtime" value="0时0分0秒" disabled> 
 </div>
 
+</body>
 <script type="text/javascript">
 /*关于计时器部分的JS代码*/
 	var se,ss=99;m=10,h=0,s=0; 
@@ -142,37 +152,107 @@
 </script><!--  end:计时器脚本 -->
 
 <script type="text/javascript">
-/*关于问卷部分的JS代码*/
-var tc;
-var rightCount=0;
-var score=0;
-var sno=<%=user.getSno()%>
-//显示结果框
-function show(){
-	document.getElementById('light').style.display='block'; 
-	document.getElementById('fade').style.display='block';
-}
-//隐藏结果框
-function close(){
-	document.getElementById('light').style.display='none';
-	document.getElementById('fade').style.display='none';
-}
-// 显示结果
-function showResult(){
-	var text;
-	if (isTeacherRight()) {
-		if(sno) text=sno+",你的成绩为10分哦"
-		else text="你的成绩为10分哦"
-		document.getElementById("showContent").value=text;
+	/*关于问卷部分的JS代码*/
+	var ans=[];//存放用户题目选择的答案
+	var rightAns=new Array(10);//存放正确的答案
+	var isRight=[];//存放每题的布尔值，用于判断每题的正确性
+	var sno=<%=sno%>;
+	//显示结果框
+	function show(){
+		document.getElementById('light').style.display='block'; 
+		document.getElementById('fade').style.display='block';
 	}
-	else {
-		if(sno) text="居然连老师都忘记了，"+sno+",你的成绩为-10分哦";
-		else text="居然连老师都忘记了，你的成绩为"+score+"分哦";
-		document.getElementById("showContent").value=text;
-		 }
-}
-
+	//隐藏结果框
+	function close(){
+		document.getElementById('light').style.display='none';
+		document.getElementById('fade').style.display='none';
+	}
+	// 显示结果
+	function showResult(){
+		var score=getScore();
+		show();//显示结果框
+		showRightWrong();//显示正确与否
+		var text;
+		if (isTeacherRight()) {
+			text=sno+",你的成绩为"+score+"分哦"
+			document.getElementById("showContent").value=text;
+		}
+		else {
+			text="居然连老师都忘记了，"+sno+",你的成绩为"+(score-40)+"分哦";
+			document.getElementById("showContent").value=text;
+			 }
+	}
+	//获取所有问题输入的值
+	function getScore(){
+		let i,rightCount=0;
+		for(i=0;i< <%=count%>;i++){
+			ans[i]=getRadioBoxValue(""+(i+1));
+		}
+		<%
+		int count2=0;
+		if(questions!=null){
+		for(Question q:questions){
+		%>
+			rightAns[<%=count2 %>]="<%=q.getAns()%>";
+		<%
+		count2++;
+		}
+		}
+		%>
+		for(i=0;i< <%=count%>;i++){
+			if(ans[i]==rightAns[i]){
+				isRight[i]=true;
+				rightCount++;
+			}else{
+				isRight[i]=false;
+			}
+			console.log(ans[i]);
+			console.log(rightAns[i]);
+		}
+		return 10*rightCount;
+	}
+	
+	//正确的题目显示正确，错误的显示错误
+	function showRightWrong(){
+		let i;
+		for(i=0;i< <%=count+1%>;i++){
+			document.getElementsByClassName("green")[i].innerHTML="";
+			document.getElementsByClassName("red")[i].innerHTML="";
+		}
+		//教师选择是否正确
+		if(isTeacherRight()){
+			document.getElementsByClassName("green")[0].innerHTML=" 正确";
+		}else document.getElementsByClassName("red")[0].innerHTML="第三个";
+		document.getElementsByName("teacher").disabled=true;
+		//题目是否正确
+		for(i=0;i< <%=count%>;i++){
+			document.getElementsByName(""+(i+1)).disabled=true;
+			if(isRight[i]){
+				document.getElementsByClassName("green")[i+1].innerHTML=" 正确";
+			}else{
+				document.getElementsByClassName("red")[i+1].innerHTML="错误，正确答案为"+rightAns[i];
+			}
+		}
+	}
+	
+	//判断教师是否选择正确
+	function isTeacherRight(){
+		let tc;
+		tc=getRadioBoxValue("teacher");
+		if(tc==3) return true
+		else return false;
+	}
+	
+	// 获取单选框的值
+	function   getRadioBoxValue(radioName) 
+	{ 
+	    var obj = document.getElementsByName(radioName);  //这个是以标签的name来取控件
+	         for(i=0; i<obj.length;i++)    {
+	          if(obj[i].checked)    { 
+	                  return   obj[i].value; 
+	          } 
+	      }         
+	     return "wuguanglin";       
+	}
 </script> <!-- end:问卷脚本 -->
-
-</body>
 </html>

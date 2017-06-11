@@ -1,4 +1,4 @@
-@charset="utf-8";
+@charset "utf-8";
 /*页面*/
 body {
     font-size:15px;
@@ -77,6 +77,12 @@ header{
 /*星星*/
 .star{
     color:red;
+}
+.red{
+    color: red;
+}
+.green{
+    color:green;
 }
 /*问卷主题内容*/
 #content{
