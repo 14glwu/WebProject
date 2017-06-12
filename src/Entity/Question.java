@@ -8,19 +8,18 @@ package Entity;
  *
  */
 public class Question {
-	private String qno;
-	private String con;
-	private String  a;
-	private String  b;
-	private String  c;
-	private String  d;
-	private String  ans;
-	private int  qlev;
+	private String qno;//闂缂栧彿
+	private String con;//闂鍐呭
+	private String  a;//A閫夐」
+	private String  b;//B閫夐」
+	private String  c;//C閫夐」
+	private String  d;//D閫夐」
+	private String  ans;//绛旀
+	private int  qlev;//闂闅惧害绛夌骇
 	/**
 	 * 
 	 */
 	public Question(String qno,String con,String  a, String  b,String  c, String  d, String  ans, int  qlev) {
-		// TODO 自动生成的构造函数存根
 		this.qno=qno;
 		this.con=con;
 		this.a=a;
@@ -37,7 +36,7 @@ public class Question {
 		return qno;
 	}
 	/**
-	 * @param qno 要设置的 qno
+	 * @param qno 
 	 */
 	public void setQno(String qno) {
 		this.qno = qno;
@@ -49,7 +48,7 @@ public class Question {
 		return con;
 	}
 	/**
-	 * @param con 要设置的 con
+	 * @param con
 	 */
 	public void setCon(String con) {
 		this.con = con;
@@ -61,7 +60,7 @@ public class Question {
 		return a;
 	}
 	/**
-	 * @param a 要设置的 a
+	 * @param a 
 	 */
 	public void setA(String a) {
 		this.a = a;
@@ -73,7 +72,7 @@ public class Question {
 		return b;
 	}
 	/**
-	 * @param b 要设置的 b
+	 * @param b
 	 */
 	public void setB(String b) {
 		this.b = b;
@@ -85,7 +84,7 @@ public class Question {
 		return c;
 	}
 	/**
-	 * @param c 要设置的 c
+	 * @param c
 	 */
 	public void setC(String c) {
 		this.c = c;
@@ -97,7 +96,7 @@ public class Question {
 		return d;
 	}
 	/**
-	 * @param d 要设置的 d
+	 * @param d 
 	 */
 	public void setD(String d) {
 		this.d = d;
@@ -109,7 +108,7 @@ public class Question {
 		return ans;
 	}
 	/**
-	 * @param ans 要设置的 ans
+	 * @param ans 要锟斤拷锟矫碉拷 ans
 	 */
 	public void setAns(String ans) {
 		this.ans = ans;
@@ -121,13 +120,9 @@ public class Question {
 		return qlev;
 	}
 	/**
-	 * @param qlev 要设置的 qlev
+	 * @param qlev 
 	 */
 	public void setQlev(int qlev) {
 		this.qlev = qlev;
 	}
-	
-	
-	
-
 }

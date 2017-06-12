@@ -13,26 +13,31 @@
 </head>
 
 <body>
-	<% //判断用户是否已经登录
-   User user=null;
+	<% 
+	//判断用户是否已经登录
+    String sno="";
+	int lev=1;
 	if(session.getAttribute("user")!=null){
-          user=(User)session.getAttribute("user");
+          User user=(User)session.getAttribute("user");
+          sno=user.getSno();
+          lev=user.getLev();
     }else{
     	response.sendRedirect("login.html");   
     }
+	
 	%>
 <!-- 头部 -->
 <header id="header">
 	<div class="center">
 		<h1 class="logo">汕大一考通</h1>
 		<div	 class="login">		
-			<span class="user">欢迎考生：<%=user.getSno() %></span>&nbsp;&nbsp;&nbsp;
+			<span class="user">欢迎考生：<%=sno %></span>&nbsp;&nbsp;&nbsp;
 			<span class="signOut"><a href="login.html">注销</a></span>
 		</div>
 		<nav class="link">
 			<h2 class="none">网站导航</h2>
 			<ul>
-				<li class="active"><a href="index.html">首页</a></li>
+				<li class="active"><a href="index.jsp">首页</a></li>
 				<li><a href="###">考试资讯</a></li>
 				<li><a href="###">考点复习</a></li>
 				<li><a href="###">自我检测</a></li>
@@ -66,7 +71,7 @@
 		<div	 class="box">
 			<h2>测试</h2>
 			<ul>
-				<li><a href="###">WEB应用</a></li>
+				<li><a href="question.jsp">WEB应用</a></li>
 				<li><a href="###">智能系统</a></li>
 				<li><a href="###">算法设计与分析</a></li>
 				<li><a href="###">计算机网络</a></li>
@@ -77,7 +82,7 @@
 		<div	 class="box">
 			<h2>复习</h2>
 			<ul>
-				<li><a href="###">WEB应用</a></li>
+				<li><a href="question.jsp">WEB应用</a></li>
 				<li><a href="###">智能系统</a></li>
 				<li><a href="###">算法设计与分析</a></li>
 				<li><a href="###">计算机网络</a></li>
@@ -88,7 +93,7 @@
 		<div	 class="box">
 			<h2>实验</h2>
 			<ul>
-				<li><a href="###">WEB应用</a></li>
+				<li><a href="question.jsp">WEB应用</a></li>
 				<li><a href="###">智能系统</a></li>
 				<li><a href="###">算法设计与分析</a></li>
 				<li><a href="###">计算机网络</a></li>
@@ -97,7 +102,7 @@
 			</ul>
 		</div>
 		<div	 class="box">
-			<h2>考试</h2>
+			<h2>录入考试题</h2>
 			<ul>
 				<li><a href="###">WEB应用</a></li>
 				<li><a href="###">智能系统</a></li>
@@ -108,7 +113,7 @@
 			</ul>
 		</div>
 		<div	 class="box">
-			<h2>测试</h2>
+			<h2>录入测试题</h2>
 			<ul>
 				<li><a href="###">WEB应用</a></li>
 				<li><a href="###">智能系统</a></li>
@@ -119,7 +124,7 @@
 			</ul>
 		</div>
 		<div	 class="box">
-			<h2>复习</h2>
+			<h2>录入复习题</h2>
 			<ul>
 				<li><a href="###">WEB应用</a></li>
 				<li><a href="###">智能系统</a></li>
@@ -130,7 +135,7 @@
 			</ul>
 		</div>
 		<div	 class="box">
-			<h2>实验</h2>
+			<h2>录入实验题</h2>
 			<ul>
 				<li><a href="###">WEB应用</a></li>
 				<li><a href="###">智能系统</a></li>
@@ -170,14 +175,14 @@
 			<h2>联系方式</h2>
 			<hr>
 			<ul>
-				<li>微博：林769835910</li>
-				<li>FaceBook：吴广林</li>
-				<li>邮箱：769835910@qq.com</li>
+				<li>微博：汕大123团队</li>
+				<li>FaceBook：汕大123团队</li>
+				<li>邮箱：123@qq.com</li>
 				<li>地址：汕头市金平区大学路243号</li>
 			</ul>
 		</div>
 	</div>
-	<div class="bottom">COPY © 汕大一卡通 | 汕头马林软件有限公司版权所属  All Rights Reserved. | 粤ICP备2014101058号</div>
+	<div class="bottom">COPY © 汕大一考通 | 汕头大学123团队 All Rights Reserved. | 粤ICP备2014101058号</div>
 </footer>
 </body>
 </html>

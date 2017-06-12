@@ -28,51 +28,39 @@ public class UserServlet extends HttpServlet{
 	ServletException,IOException{
 		doPost(request, response);
 	}
-	/**
-	 * Post·½·¨
-	 */
+
 	public void doPost(HttpServletRequest request,HttpServletResponse response) throws
 	ServletException,IOException{
-        String action = request.getParameter("action");//»ñÈ¡²Ù×÷
-        if("login".equals(action)){//ÓÃ»§µÇÂ½
+        String action = request.getParameter("action");//è·å–ç”¨æˆ·çš„æ“ä½œ
+        if("login".equals(action)){//æ‰§è¡Œç™»å½•æ“ä½œ
             this.login(request, response);
         }
-        if("register".equals(action)){//ÓÃ»§×¢²á
+        if("register".equals(action)){//æ‰§è¡Œæ³¨å†Œæ“ä½œ
             this.register(request, response);
         }
 	}
 	
-	/**
-	 * ´¦Àílogin¶¯×÷£¬ÅĞ¶ÏÓÃ»§ÃûºÍÃÜÂëÊÇ·ñÕıÈ·¡£
-	 * @param request
-	 * @param response
-	 * @throws ServletException
-	 * @throws IOException
-	 */
+
 	public void login(HttpServletRequest request,HttpServletResponse response) 
 	throws ServletException, IOException{
-		 response.setContentType("text/html");
-		 response.setCharacterEncoding("gbk");
-		 PrintWriter out = response.getWriter();
 		String sno=request.getParameter("sno");
-		System.out.print(sno);
 		String password=request.getParameter("password");
+		response.setContentType("text/html");
+		response.setCharacterEncoding("utf-8");
+		PrintWriter out = response.getWriter();
 		HttpSession session=request.getSession();
 		User user=new User(sno, password, 1);
 		DBBean db=new DBBean();	
-		boolean isRight=false;
-		isRight=db.checkRecord(user);//ÅĞ¶ÏÓÃ»§ÊÇ·ñµÇÂ¼³É¹¦
+		boolean isRight=false;//åˆ¤æ–­ç”¨æˆ·ç™»å½•æ˜¯å¦æˆåŠŸ
+		isRight=db.checkRecord(user);
 		if(isRight){
-			session.setAttribute("user",user);//sessionÉèÖÃuserÊôĞÔ£¬ÓÃÓÚÅĞ¶ÏÓÃ»§ÊÇ·ñµÇÂ¼¹ı
+			session.setAttribute("user",user);//ç”¨æˆ·ä¿¡æ¯å­˜åœ¨sessionä¸­
 			List<Question> questions = null;
-			questions = db.getQuestions(user);//¸ù¾İÓÃ»§µÄµÈ¼¶»ñÈ¡ÏàÓ¦µÄÌâÄ¿
-			request.getSession().setAttribute("questions", questions);
-			List<Question> q = (List<Question>)request.getSession().getAttribute("questions");
-			System.out.println("test:" + q.size());
-			System.out.println("test:" + questions.size());
-			out.print("success");//ÓÃ»§ÃûÃÜÂëÕıÈ·¾Í·µ»Ø×Ö·ûsuccess
+			questions = db.getQuestions(user);//æ ¹æ®ç”¨æˆ·ç­‰çº§è·å–é—®é¢˜é›†
+			session.setAttribute("questions", questions);//é—®é¢˜é›†å­˜åœ¨sessionä¸­
+			out.print("success");
 		}else{
-			out.print("fail");//Ê§°Ü¾Í·µ»Ø×Ö·ûfail
+			out.print("fail");
 		}
 		out.flush();
 		out.close();
@@ -87,17 +75,17 @@ public class UserServlet extends HttpServlet{
 		PrintWriter out = response.getWriter();
 		User user=new User(sno, password, 1);
 		DBBean db=new DBBean();
-		boolean isExist=false;
-		isExist=db.checkRecord(user);//ÅĞ¶ÏÓÃ»§ÊÇ·ñÔø¾­×¢²á¹ı
-		boolean isSuccess=false;//ÅĞ¶ÏÓÃ»§ÊÇ·ñ×¢²á³É¹¦
+		boolean isExist=false;//åˆ¤æ–­ç”¨æˆ·æ˜¯å¦å­˜åœ¨
+		isExist=db.checkRecord(user);
+		boolean isSuccess=false;//ç”¨äºåˆ¤æ–­ç”¨æˆ·æ³¨å†Œæ˜¯å¦æˆåŠŸ
 		if(isExist){
-			out.print("exist");//Èç¹ûÓÃ»§´æÔÚ¾Í·µ»Ø×Ö·ûexist
+			out.print("exist");
 		}else {
 			isSuccess=db.insertRecord(user);
 			if(isSuccess){
-				out.print("success");//×¢²á³É¹¦ºó¾Í·µ»Ø×Ö·ûsuccess
+				out.print("success");
 			}else {
-				out.print("fail");//×¢²áÊ§°Üºó¾Í·µ»Ø×Ö·ûfail
+				out.print("fail");
 			}
 		}
 		out.flush();

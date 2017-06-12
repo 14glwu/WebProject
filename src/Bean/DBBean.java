@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Entity.Question;
+import Entity.Sscore;
 import Entity.User;
 
 import com.mysql.jdbc.Connection;
@@ -26,10 +27,13 @@ public class DBBean {
 	Statement stat = null;
 	PreparedStatement pstat = null;
 	ResultSet rs = null;
-	
 
 	public DBBean() {}
 	
+	/**
+	 * 建立数据库连接
+	 * @return
+	 */
 	public Connection getCon(){
 		try{
 //			Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -52,6 +56,11 @@ public class DBBean {
 		return con;		
 	}
 	
+	/**
+	 * 执行查询语句
+	 * @param sql
+	 * @return
+	 */
 	public ResultSet query(String sql){
 		try{
 			con = getCon();
@@ -63,6 +72,10 @@ public class DBBean {
 		return rs;
 	}
 	
+	/**
+	 * 执行更新sql语句
+	 * @param sql
+	 */
 	public void update(String sql){
 		try{
 			con = getCon();
@@ -73,6 +86,11 @@ public class DBBean {
 		}
 	}
 
+	/**
+	 * 执行多条更新sql语句
+	 * @param sql
+	 * @param args
+	 */
 	public void update(String sql,String[] args){
 		try{
 			con = getCon();
@@ -85,6 +103,12 @@ public class DBBean {
 			ex.printStackTrace();
 		}
 	}
+	
+	/**
+	 * 插入一条用户记录
+	 * @param user
+	 * @return
+	 */
 	public boolean insertRecord (User user)
 	{
 		PreparedStatement pstmt=null;
@@ -93,10 +117,9 @@ public class DBBean {
 		try{
 			con=getCon();
 			String sql = "INSERT INTO student(sno,psw) VALUES(?,?)";
-			PreparedStatement ps = con.prepareStatement(sql);
 			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1,user.getSno().toString());
-			pstmt.setString(2,user.getPsw().toString());
+			pstmt.setString(1,user.getSno());
+			pstmt.setString(2,user.getPsw());
 			pstmt.executeUpdate();
 			pstmt.close();
 		}catch(Exception e)
@@ -105,6 +128,37 @@ public class DBBean {
 		return true;
 	}
 	
+	/**
+	 * 插入一条成绩记录
+	 * @param score
+	 * @return
+	 */
+	public boolean insertRecord (Sscore score)
+	{
+		PreparedStatement pstmt=null;
+		
+		if(score==null)return false;
+		try{
+			con=getCon();
+			//id是自增属性，不需要插入
+			String sql = "INSERT INTO score(sno,score,time) VALUES(?,?,?)";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1,score.getSno());
+			pstmt.setInt(2,score.getScore());
+			pstmt.setString(3,score.getTime());
+			pstmt.executeUpdate();
+			pstmt.close();
+		}catch(Exception e)
+		 {e.printStackTrace();}
+		 finally{close();}
+		return true;
+	}
+	
+	/**
+	 * 检查是否已经有该用户
+	 * @param user
+	 * @return
+	 */
 	public boolean checkRecord(User user)
 	{
 		con=getCon();
@@ -122,6 +176,11 @@ public class DBBean {
 		return false;
 	}
 	
+	/**
+	 * 获取试卷的问题集
+	 * @param user
+	 * @return
+	 */
 	public List<Question> getQuestions(User user){
 		List<Question> questions = new ArrayList<Question>();
 		con=getCon();

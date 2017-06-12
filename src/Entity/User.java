@@ -8,9 +8,9 @@ package Entity;
  *
  */
 public class User {
-		private String sno;
-		private String psw;
-		private int lev;
+		private String sno;//瀛﹀彿
+		private String psw;//绛旀
+		private int lev;//鐢ㄦ埛绾у埆
 		
 		public User(String sno,String psw,int lev ){
 			this.sno = sno;
@@ -25,7 +25,7 @@ public class User {
 	}
 
 	/**
-	 * @param sno 要设置的 sno
+	 * @param sno 
 	 */
 	public void setSno(String sno) {
 		this.sno = sno;
@@ -39,7 +39,7 @@ public class User {
 	}
 
 	/**
-	 * @param psw 要设置的 psw
+	 * @param psw 
 	 */
 	public void setPsw(String psw) {
 		this.psw = psw;
@@ -53,7 +53,7 @@ public class User {
 	}
 
 	/**
-	 * @param lev 要设置的 lev
+	 * @param lev 
 	 */
 	public void setLev(int lev) {
 		this.lev = lev;

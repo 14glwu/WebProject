@@ -135,7 +135,7 @@ header{
     cursor: pointer;
 }
 /*提交按钮*/
-#submit{
+#button{
     margin: 40px auto 20px;
     width:100px;
     height: 40px;
@@ -145,7 +145,7 @@ header{
     border-radius:8px;
     outline:none;
 }
-#submit:hover{
+#button:hover{
     background: #00B2EE;
     cursor: pointer;
 }

@@ -8,14 +8,13 @@ package Entity;
  *
  */
 public class Sscore {
-	private String sno;
-	private int score;
-	private String time;
+	private String sno;//瀛﹀彿
+	private int score;//鎴愮哗
+	private String time;//鎴愮哗鎻愪氦鏃堕棿
 	/**
 	 * 
 	 */
 	public Sscore(String sno,int score,String time) {
-		// TODO 自动生成的构造函数存根
 		this.sno=sno;
 		this.score=score;
 		this.time=time;
@@ -27,7 +26,7 @@ public class Sscore {
 		return sno;
 	}
 	/**
-	 * @param sno 要设置的 sno
+	 * @param sno 
 	 */
 	public void setSno(String sno) {
 		this.sno = sno;
@@ -39,7 +38,7 @@ public class Sscore {
 		return score;
 	}
 	/**
-	 * @param score 要设置的 score
+	 * @param score 
 	 */
 	public void setScore(int score) {
 		this.score = score;
@@ -51,7 +50,7 @@ public class Sscore {
 		return time;
 	}
 	/**
-	 * @param time 要设置的 time
+	 * @param time
 	 */
 	public void setTime(String time) {
 		this.time = time;
