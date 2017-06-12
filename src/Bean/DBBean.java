@@ -127,6 +127,50 @@ public class DBBean {
 		 finally{close();}
 		return true;
 	}
+	/**
+	 * 插入一条考题记录
+	 * @param user
+	 * @return
+	 */
+	public boolean insertRecord (Question question)
+	{
+		PreparedStatement pstmt=null;
+		
+		if(question==null)return false;
+		try{
+			con=getCon();
+			String sql = "INSERT INTO question(con,a,b,c,d,ans,qlev) VALUES(?,?,?,?,?,?,?)";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1,question.getCon());
+			pstmt.setString(2,question.getA());
+			pstmt.setString(3,question.getB());
+			pstmt.setString(4,question.getC());
+			pstmt.setString(5,question.getD());
+			pstmt.setString(6,question.getAns());
+			pstmt.setInt(7,question.getQlev());
+			pstmt.executeUpdate();
+			pstmt.close();
+		}catch(Exception e)
+		 {e.printStackTrace();}
+		 finally{close();}
+		return true;
+	}
+	
+	/**
+	 * 修改用户等级
+	 * @param user
+	 * @return
+	 */
+	public boolean changeUserLev (User user)
+	{
+		con=getCon();
+		if(user==null) return false;
+		String sno = user.getSno();
+		int lev = user.getLev();
+		String sql = "update student set lev='"+lev+"' where sno='"+sno+"'";
+		update(sql);
+		return true;
+	}
 	
 	/**
 	 * 插入一条成绩记录
@@ -177,7 +221,7 @@ public class DBBean {
 	}
 	
 	/**
-	 * 获取试卷的问题集
+	 * 根据用户等级获取试卷的问题集
 	 * @param user
 	 * @return
 	 */
@@ -205,6 +249,59 @@ public class DBBean {
 		}
 		return  questions;
 	}
+	
+	/**
+	 * 获取所有用户成绩集，降序排序
+	 * @param user
+	 * @return
+	 */
+	public List<Sscore> getAllSscores(){
+		List<Sscore> sscores= new ArrayList<Sscore>();
+		con=getCon();
+		String sql = "select * from score order by score desc";
+		try{
+			pstat = con.prepareStatement(sql);
+			rs = pstat.executeQuery();
+			while(rs.next()){
+				sscores.add(new Sscore(rs.getString("sno"),
+						rs.getInt("score"),
+						rs.getString("time")
+						) );
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			close();
+		}
+		return sscores;
+	}
+	
+	/**
+	 * 获取用户个人成绩集，降序排序
+	 * @param user
+	 * @return
+	 */
+	public List<Sscore> getSingleSscores(User user){
+		List<Sscore> sscores= new ArrayList<Sscore>();
+		con=getCon();
+		String sql = "select * from score where sno='"+user.getSno()+"' order by score desc";
+		try{
+			pstat = con.prepareStatement(sql);
+			rs = pstat.executeQuery();
+			while(rs.next()){
+				sscores.add(new Sscore(rs.getString("sno"),
+						rs.getInt("score"),
+						rs.getString("time")
+						) );
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			close();
+		}
+		return sscores;
+	}
+	
 	public void close(){
 		try{
 			if (rs != null)rs.close();

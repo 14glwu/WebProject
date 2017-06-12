@@ -34,7 +34,7 @@ a{
 #header .logo{
 	width: 300px;
 	height: 70px;
-	background-image: url(../img/logo.png);
+	background-image: url(../img/logo2.png);
 	text-indent: -9999px;
 	float: left;
 }
@@ -98,7 +98,7 @@ a{
 /* 设置滚动条的样式 */
 ::-webkit-scrollbar {    
 	width: 12px;
-	height:8px;
+	height:8px;  
 }
 /* 滚动槽 */
 ::-webkit-scrollbar-track {    
@@ -107,8 +107,8 @@ a{
 	}
 /* 滚动条滑块 */
 ::-webkit-scrollbar-thumb {    
-	border-radius: 10px;    
-	background-color:white;
+	border-radius: 10px; 
+	background-color: 	 #0099cc;
 /* 	background: rgba(255,255,255,0.1);     */
 /* 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); */
 	}

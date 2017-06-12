@@ -17,6 +17,7 @@ import Entity.User;
 
 
 public class UserServlet extends HttpServlet{
+	private static final long serialVersionUID = 1L;
 	public  UserServlet() {
 		super();
 	}
@@ -40,7 +41,6 @@ public class UserServlet extends HttpServlet{
         }
 	}
 	
-
 	public void login(HttpServletRequest request,HttpServletResponse response) 
 	throws ServletException, IOException{
 		String sno=request.getParameter("sno");

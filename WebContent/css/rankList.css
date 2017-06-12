@@ -1,0 +1,98 @@
+@CHARSET "UTF-8";
+@charset "utf-8";
+/*页面*/
+body {
+    font-size:15px;
+    padding:0;
+    margin:0;
+    color:  #303030;
+    font-family:"微软雅黑","宋体",Arial;
+    background:#fff url('../img/background2.jpg') no-repeat top center/100% fixed;
+    min-width:1200px;
+}
+
+/*自定义容器home*/
+#home {
+    opacity: 0.95;
+    filter: alpha(opacity=95);
+    box-shadow:0 0 2px #000;
+    margin:60px auto;
+    width:960px;
+    background:#fff;
+    overflow:auto;
+    border:solid 1px #fff;
+}
+h4{
+    font-weight: bold;
+}
+/*头部*/
+header{
+    margin:60px 80px 20px;
+    padding-bottom:10px;
+    border-bottom:1px dotted grey;
+}
+/*问卷标题*/
+#title{
+    padding-bottom: 40px;
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    color: #009ACD;
+}
+
+
+#main{
+    margin: 30px 80px 20px;
+}
+/*星星*/
+#main .star{
+    color:red;
+}
+
+
+#main table{
+   margin:0px auto;
+   padding:0 auto;
+   border-spacing: 0;
+   border-collapse: collapse;
+   empty-cells:show;
+}
+#main table td,th{
+    width:200px;
+    height:25px;
+    padding:10px;
+    border: 1px solid #333;
+}
+#main table th{
+	background:#0099cc;
+	opactiy:0.8;
+	color:#eee;
+}
+
+#main table tr{
+}
+
+#button{
+    margin: 30px 120px 20px;
+    width:150px;
+    height: 40px;
+    color: white;
+    font-size: 16px;
+    background: #0099CC;
+    border-radius:8px;
+    outline:none;
+}
+#button:hover{
+    background: #00B2EE;
+    cursor: pointer;
+}
+/*尾部*/
+footer {
+    padding:18px;
+    margin: 45px 20px 0;
+    text-align:center;
+    color: #333;
+    font-size:14px;
+    border-top:solid 1px #999;
+}
+

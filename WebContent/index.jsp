@@ -6,7 +6,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>汕大一考通</title>
+	<title>汕大E考通</title>
 	<link rel="stylesheet" type="text/css" href="css/basic.css">
 	<link rel="stylesheet" type="text/css" href="css/index.css">
 	<script src="js/jquery-3.2.1.min.js"></script>
@@ -29,7 +29,7 @@
 <!-- 头部 -->
 <header id="header">
 	<div class="center">
-		<h1 class="logo">汕大一考通</h1>
+		<h1 class="logo">汕大E考通</h1>
 		<div	 class="login">		
 			<span class="user">欢迎考生：<%=sno %></span>&nbsp;&nbsp;&nbsp;
 			<span class="signOut"><a href="login.html">注销</a></span>
@@ -39,8 +39,8 @@
 			<ul>
 				<li class="active"><a href="index.jsp">首页</a></li>
 				<li><a href="###">考试资讯</a></li>
-				<li><a href="###">考点复习</a></li>
-				<li><a href="###">自我检测</a></li>
+				<li><a href="addQuestion.jsp"  target="_blank">录入题目</a></li>
+				<li><a href="rankList.jsp" target="_blank">查看成绩</a></li>
 				<li><a href="###">关于我们</a></li>
 			</ul>
 		</nav>
@@ -60,7 +60,7 @@
 		<div class="box">
 			<h2>考试</h2>
 			<ul>
-				<li><a href="question.jsp">WEB应用</a></li>
+				<li><a href="question.jsp" target="_blank">WEB应用</a></li>
 				<li><a href="###">智能系统</a></li>
 				<li><a href="###">算法设计与分析</a></li>
 				<li><a href="###">计算机网络</a></li>
@@ -71,7 +71,7 @@
 		<div	 class="box">
 			<h2>测试</h2>
 			<ul>
-				<li><a href="question.jsp">WEB应用</a></li>
+				<li><a href="question.jsp" target="_blank">WEB应用</a></li>
 				<li><a href="###">智能系统</a></li>
 				<li><a href="###">算法设计与分析</a></li>
 				<li><a href="###">计算机网络</a></li>
@@ -82,7 +82,7 @@
 		<div	 class="box">
 			<h2>复习</h2>
 			<ul>
-				<li><a href="question.jsp">WEB应用</a></li>
+				<li><a href="question.jsp" target="_blank">WEB应用</a></li>
 				<li><a href="###">智能系统</a></li>
 				<li><a href="###">算法设计与分析</a></li>
 				<li><a href="###">计算机网络</a></li>
@@ -93,7 +93,7 @@
 		<div	 class="box">
 			<h2>实验</h2>
 			<ul>
-				<li><a href="question.jsp">WEB应用</a></li>
+				<li><a href="question.jsp" target="_blank">WEB应用</a></li>
 				<li><a href="###">智能系统</a></li>
 				<li><a href="###">算法设计与分析</a></li>
 				<li><a href="###">计算机网络</a></li>
@@ -102,7 +102,7 @@
 			</ul>
 		</div>
 		<div	 class="box">
-			<h2>录入考试题</h2>
+			<h2>难点</h2>
 			<ul>
 				<li><a href="###">WEB应用</a></li>
 				<li><a href="###">智能系统</a></li>
@@ -113,7 +113,7 @@
 			</ul>
 		</div>
 		<div	 class="box">
-			<h2>录入测试题</h2>
+			<h2>重点</h2>
 			<ul>
 				<li><a href="###">WEB应用</a></li>
 				<li><a href="###">智能系统</a></li>
@@ -124,7 +124,7 @@
 			</ul>
 		</div>
 		<div	 class="box">
-			<h2>录入复习题</h2>
+			<h2>考点</h2>
 			<ul>
 				<li><a href="###">WEB应用</a></li>
 				<li><a href="###">智能系统</a></li>
@@ -135,7 +135,7 @@
 			</ul>
 		</div>
 		<div	 class="box">
-			<h2>录入实验题</h2>
+			<h2>易错点</h2>
 			<ul>
 				<li><a href="###">WEB应用</a></li>
 				<li><a href="###">智能系统</a></li>
@@ -182,7 +182,7 @@
 			</ul>
 		</div>
 	</div>
-	<div class="bottom">COPY © 汕大一考通 | 汕头大学123团队 All Rights Reserved. | 粤ICP备2014101058号</div>
+	<div class="bottom">COPY © 汕大E考通 | 汕头大学123团队 All Rights Reserved. | 粤ICP备2014101058号</div>
 </footer>
 </body>
 </html>

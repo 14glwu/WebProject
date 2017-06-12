@@ -8,7 +8,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>调查问卷</title>
+	<title>汕大E考通</title>
 	<link rel="stylesheet" href="css/questionaire.css">
 </head>
 <body>
@@ -30,9 +30,9 @@
 	
 <div id="home">
 	<header>
-		<div id="title">WEB应用技术期末考试</div>
+		<h1 id="title">WEB应用技术期末考试</h1>
 		<div id="tips">本次考试共10题，均为单选题,总分100分</div>
-		<a id="query" href="http://www.baidu.com">点击进入成绩查询系统!</a>
+		<a id="query" href="rankList.jsp" target="_blank">点击进入成绩查询系统!</a>
 	</header>
 	<div id="main">
 		<div id="StuIfo">
@@ -95,8 +95,8 @@
 			}
 			%>
 		</div><!-- end:content问卷内容 -->
-		<p id="pButton"><button type="button" id="button" onclick="showResult();startRequest();">交卷</button></p>
-	</div><!-- end:main问卷主体 -->
+		<button type="button" id="button" onclick="showResult();startRequest();">交卷</button>
+	</div><!-- end:main主体 -->
 	<footer>
 		Copyright &copy;2017 汕大-吴广林
 	</footer>
@@ -151,6 +151,7 @@
 	window.onload=startclock();
 </script><!--  end:计时器脚本 -->
 
+
 <script type="text/javascript">
 	/*关于问卷部分的JS代码*/
 	var xmlhttp;//用于发送Post请求
@@ -171,6 +172,7 @@
 	}
 	// 显示结果
 	function showResult(){
+		pauseclock();//停止时间
 		score=getScore();
 		show();//显示结果框
 		showRightWrong();//显示正确与否
@@ -226,16 +228,16 @@
 		if(isTeacherRight()){
 			document.getElementsByClassName("green")[0].innerHTML=" 正确";
 		}else document.getElementsByClassName("red")[0].innerHTML="错误，正确答案为第三个";
- 		document.getElementsByName("teacher")[0].disabled=true;
- 		document.getElementsByName("teacher")[1].disabled=true;
- 		document.getElementsByName("teacher")[2].disabled=true;
- 		document.getElementsByName("teacher")[3].disabled=true;
+// 		document.getElementsByName("teacher")[0].disabled=true;
+//  		document.getElementsByName("teacher")[1].disabled=true;
+//  		document.getElementsByName("teacher")[2].disabled=true;
+//  		document.getElementsByName("teacher")[3].disabled=true; 
 		//题目是否正确
 		for(i=0;i< <%=count%>;i++){
- 			document.getElementsByName(""+(i+1))[0].disabled=true;
- 			document.getElementsByName(""+(i+1))[1].disabled=true;
- 			document.getElementsByName(""+(i+1))[2].disabled=true;
- 			document.getElementsByName(""+(i+1))[3].disabled=true;
+//  			document.getElementsByName(""+(i+1))[0].disabled=true;
+//  			document.getElementsByName(""+(i+1))[1].disabled=true;
+//  			document.getElementsByName(""+(i+1))[2].disabled=true;
+//  			document.getElementsByName(""+(i+1))[3].disabled=true; 
 			if(isRight[i]){
 				document.getElementsByClassName("green")[i+1].innerHTML=" 正确";
 			}else{
